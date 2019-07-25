@@ -12,13 +12,14 @@
 
 //   console.log(x);
 
-const enter = window.addEventListener ("keypress", function (e) {
-    const text = document.getElementById('input').value.trim();
-    // const out = document.getElementById('inser2').innerHTML = text;
-    if (e.keyCode !== 13) return;
-    var d1 = document.getElementById('input'); 
-    d1.insertAdjacentHTML('afterend', '<div id="inser2">1string</div>');
-    
+
+const enter = input.addEventListener ("keypress", function (e) {
+    if (e.keyCode === 13) {
+        const text = document.getElementById('input').value.trim();
+        var d1 = document.getElementById('input'); 
+        d1.insertAdjacentHTML('afterend', '<div id="inser2"></div>');
+        const out = document.getElementById('inser2').innerHTML = text;
+    }
 });
 
 

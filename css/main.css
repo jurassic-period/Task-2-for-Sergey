@@ -41,12 +41,6 @@ h1 {
     padding: 15px 15px 15px 60px;
     display: block;
     line-height: 1.2;
-}
-.tameplate {
-    display: none;
-}
-.block {
-    display: block;
     position: relative;
 }
 .spin {
@@ -59,6 +53,6 @@ h1 {
     transition: all 0.2s ease-out;
     z-index: 1;
 }
-.block:hover .spin {
+.new:hover .spin {
     opacity: 1; 
 }

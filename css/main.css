@@ -41,24 +41,24 @@ h1 {
     padding: 15px 15px 15px 60px;
     display: block;
     line-height: 1.2;
-    position: relative;
 }
-.wrapper {
+.tameplate {
+    display: none;
+}
+.block {
+    display: block;
     position: relative;
 }
 .spin {
     opacity: 0;
     position: absolute;
-    left: 277px;
-    top: -18px;
+    left: 496px;
+    top: 17px;
     font-size: 26px;
     color: #af5b5e;
-    transition: color 0.2s ease-out;
-    left: 508px;
-    top: 16px;
+    transition: all 0.2s ease-out;
     z-index: 1;
 }
-.spin:hover {
-    opacity: 1;
-    
+.block:hover .spin {
+    opacity: 1; 
 }

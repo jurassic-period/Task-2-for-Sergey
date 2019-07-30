@@ -17,6 +17,13 @@ try {
             // newLi.classList.add("block"); // add class, now don't need
             let textP = newLi.querySelector('#inputText');
             textP.innerHTML = text;  
+            // delite elements________________________________
+            ul.addEventListener('click', () => { 
+                let target = event.target; 
+                if (!target.classList.contains('fa')) return;
+                 target.parentNode.remove(); 
+            });
+            //_________________________________________________
         }
     });
 } catch {

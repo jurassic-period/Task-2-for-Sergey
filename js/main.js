@@ -6,6 +6,7 @@ try {
     let template = document.querySelector('#template').content; 
     let li = template.querySelector('.tameplate');
     let ul = document.querySelector('.unordered-list');
+    let arr = [];
 
     const enter = input.addEventListener ("keypress", function (e) {
         if (e.keyCode === 13) {
@@ -17,11 +18,16 @@ try {
             // newLi.classList.add("block"); // add class, now don't need
             let textP = newLi.querySelector('#inputText');
             textP.innerHTML = text;  
+            // console.log for array__________________________
+            arr.push(text);
+            console.log(arr);
             // delite elements________________________________
             ul.addEventListener('click', () => { 
                 let target = event.target; 
                 if (!target.classList.contains('fa')) return;
                  target.parentNode.remove(); 
+                
+                console.log(arr);
             });
             //_________________________________________________
         }

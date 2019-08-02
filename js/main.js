@@ -7,27 +7,34 @@ try {
     let li = template.querySelector('.tameplate');
     let ul = document.querySelector('.unordered-list');
     let arr = [];
+    let arrId = 0;
+
 
     const enter = input.addEventListener ("keypress", function (e) {
         if (e.keyCode === 13) {
             const text = document.getElementById('input').value.trim();
+            const newObject = {id:arrId++, mean:text};
             document.getElementById('input').value = '';
             
             let newLi = li.cloneNode(true);
             ul.appendChild(newLi);
+            newLi.setAttribute('data-id', newObject.id);
             // newLi.classList.add("block"); // add class, now don't need
             let textP = newLi.querySelector('#inputText');
             textP.innerHTML = text;  
+
             // console.log for array__________________________
-            arr.push(text);
+            arr.push(newObject);
             console.log(arr);
+
             // delite elements________________________________
-            ul.addEventListener('click', () => { 
+            newLi.addEventListener('click', (event) => { 
                 let target = event.target; 
+                const attrMean = newObject.id;
                 if (!target.classList.contains('fa')) return;
                  target.parentNode.remove(); 
-                
-                console.log(arr);
+                arr.splice(attrMean, 1).pop();
+                console.log(arr); 
             });
             //_________________________________________________
         }
@@ -42,7 +49,6 @@ try {
 const del = (f) => {
     f.remove();
 };
-
 
 
 

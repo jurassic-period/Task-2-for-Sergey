@@ -30,9 +30,15 @@ try {
             // delite elements________________________________
             newLi.addEventListener('click', (event) => { 
                 let target = event.target; 
-                const attrMean = newObject.id;
+                const iParent = target.closest('.new');
+                //closest help to searching for id, class and attributes cool
+                const attrMean = iParent.getAttribute('data-id');
+                console.log(attrMean + `значение id удалённой вкладки`);
                 if (!target.classList.contains('fa')) return;
-                 target.parentNode.remove(); 
+
+                // target.parentNode.remove(); // remove only parentNode 1 lvl on 
+                
+                iParent.remove(); 
                 arr.splice(attrMean, 1).pop();
                 console.log(arr); 
             });

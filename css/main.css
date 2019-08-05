@@ -10,6 +10,10 @@ body {
     margin: 0 auto;
     font-weight: 300;
 }
+a {
+    text-decoration: none;
+    color: inherit;
+}
 header {
     margin-top: 100px;
 }
@@ -25,7 +29,7 @@ h1 {
     padding: 16px 16px 16px 60px;
     border: none;
     background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0px 9px 12px 5px rgba(0,0,0,0.08);
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.09);
     margin: 0;
     width: 100%;
     font-size: 24px;
@@ -55,4 +59,31 @@ h1 {
 }
 .new:hover .spin {
     opacity: 1; 
+}
+.footer-bar {
+    color: #777;
+    padding: 10px 15px;
+    height: 20px;
+    text-align: center;
+    border-top: 1px solid #e6e6e6;
+    background: #fff;
+}
+.d-flex {
+    display: flex;
+}
+.justify-content-around {
+    justify-content: space-around;
+}
+.footer-ul a {
+    border: 1px solid transparent;
+    padding: 3px 7px;
+    border-radius: 3px;
+}
+.footer-ul a:hover {
+    border-color:rgba(175, 47, 47, 0.2);
+    transition: all 0.3s ease-out;
+}
+.footer-ul a:focus {
+    border-color:rgba(175, 47, 47, 0.2);
+    transition: all 0.3s ease-out;
 }

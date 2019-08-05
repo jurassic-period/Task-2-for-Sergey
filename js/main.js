@@ -44,7 +44,6 @@ try {
                 if (!target.classList.contains('fa')) return;
                 // target.parentNode.remove(); // remove only parentNode 1 lvl on    
                 iParent.remove(); 
-                // arr.splice(attrMean, 1).pop();
                 console.log(arr); 
             });
             //_________________________________________________

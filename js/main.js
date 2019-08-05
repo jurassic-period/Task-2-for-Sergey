@@ -7,13 +7,10 @@ try {
     let li = template.querySelector('.tameplate');
     let ul = document.querySelector('.unordered-list');
     let arr = [];
-    let arrId = 0;
-
-
     const enter = input.addEventListener ("keypress", function (e) {
         if (e.keyCode === 13) {
             const text = document.getElementById('input').value.trim();
-            const newObject = {id:arrId++, mean:text};
+            const newObject = {id:+ new Date(), mean:text};
             document.getElementById('input').value = '';
             
             let newLi = li.cloneNode(true);
@@ -32,23 +29,22 @@ try {
                 let target = event.target; 
                 const iParent = target.closest('.new');
                 //closest help to searching for id, class and attributes cool
-                const attrMean = iParent.getAttribute('data-id');
-                // This function change all id's in array
-                const changeIdObjectAfterRemoving = (attrMean, arr) => {
-                    let i = attrMean;
-                    for (i; i < arr.length; i++) {
-                        arr[i].id = arr[i].id - 1;
-                    //  This part of function change all data-id after click delite
-                    const nextLiWithOldAttribute = document.querySelector(".new[data-id='" + (i) +"']");
-                    nextLiWithOldAttribute.setAttribute('data-id', i - 1);
-                    } 
+
+                // Part which delite object in Array after click
+                const attrMean = Number(iParent.getAttribute('data-id'));
+                const deliteObjectInArrayForId = (attrMean) => {
+                    for(let i = 0; i < arr.length; i++) {
+                        if (arr[i].id === attrMean) {
+                            arr.splice(i, 1).pop();
+                        }
+                    }
                 };
-                changeIdObjectAfterRemoving(attrMean, arr);
+                deliteObjectInArrayForId(attrMean);
 
                 if (!target.classList.contains('fa')) return;
                 // target.parentNode.remove(); // remove only parentNode 1 lvl on    
                 iParent.remove(); 
-                arr.splice(attrMean, 1).pop();
+                // arr.splice(attrMean, 1).pop();
                 console.log(arr); 
             });
             //_________________________________________________

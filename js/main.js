@@ -9,20 +9,16 @@ const spanCounter = document.getElementById('count');
 
     
 //Function counter "items left"__________________________________________
-    const counterItem = (arg) => {
+    const counterItem = () => {
         const allElements = ul.querySelectorAll('.check');
         const allParentLi = ul.querySelectorAll('.new');
 
         let amountItems = allElements.length;
-        if (arg === 0) {
-            amountItems = 0;
-        } else {
-            for (let i = 0; i < amountItems; i++) {
-                if (allElements[i].classList.contains('visible') === true || allParentLi[i].classList.contains('none') === true ) {
-                    amountItems -= 1;
-                }
-            } 
-        }
+        for (let i = 0; i < amountItems; i++) {
+            if (allElements[i].classList.contains('visible')) {
+                amountItems -= 1;
+            }
+        } 
         spanCounter.innerHTML = amountItems;
         
     };
@@ -55,8 +51,6 @@ const spanCounter = document.getElementById('count');
             const footerBar = document.getElementById('fBar');
             footerBar.style.visibility = "visible"; 
             // allow to change css meaning, you should use ""; 
-            
-
             
 
             // call counter and show result of counting
@@ -94,7 +88,7 @@ const spanCounter = document.getElementById('count');
         console.log(arr); 
 
         // call counter and show result of counting
-        counterItem(0); 
+        counterItem(); 
     });
 //___Finish_______________delite elements__________
 
@@ -106,7 +100,7 @@ const spanCounter = document.getElementById('count');
         const penParent = target.closest('.new');
         const pText = penParent.querySelector('.input-p');
         
-        if (target.classList.contains('pen') === true) {
+        if (target.classList.contains('pen')) {
             if (target.classList.contains('fa-pen')) {
                 pText.setAttribute("contenteditable","true");
                 target.classList.remove('fa-pen');
@@ -137,14 +131,14 @@ const spanCounter = document.getElementById('count');
         if (target.classList.contains('fa-check')) {
             const state = target.classList.contains('visible');
             
-            if (state === false) {
+            if (!state) {
                 
                 target.classList.add("visible");
                 pText.classList.add("line-through");
                 //Changer "item left" ;
                 spanCounter.innerHTML = itemMeanNow -1;
 
-            } else if (state === true) {
+            } else if (state) {
                 
                 target.classList.remove("visible");
                 pText.classList.remove("line-through");
@@ -193,13 +187,13 @@ const spanCounter = document.getElementById('count');
         else if (target.classList.contains('completed')) {
             for (let i = 0; i < allElements.length; i++) {
                 let elemParent = allElements[i].closest('.new');
-                if(allElements[i].classList.contains('visible') === true) {
+                if(allElements[i].classList.contains('visible')) {
                     elemParent.classList.remove('none');
                 } else {
                     elemParent.classList.add('none');
                 }
             }
-            // call counter and show result of counting
-            counterItem(0);
+            // change counter meaning
+            spanCounter.innerHTML = 0;
         }
     });

@@ -53,9 +53,21 @@ h1 {
     left: 496px;
     top: 17px;
     font-size: 26px;
-    color: #af5b5e;
+    color: #af5b5e81;
     transition: all 0.2s ease-out;
     z-index: 1;
+}
+.fa-times:hover {
+    color: #af3539;
+}
+.pen {
+    left: 470px;
+    top: 20px;
+    font-size: 20px;
+    color: #21732286;
+}
+.pen:hover {
+    color: #217322;
 }
 .check {
     opacity: 0;
@@ -70,8 +82,10 @@ h1 {
     border-radius: 18px;
     padding: 2px 2px 1px 1px;
 }
-.wrapper-check:hover {
+.check:hover {
     opacity: 1;
+    color: #70b92723;
+    border-color: #70b92723;
 }
 .new:hover .spin {
     opacity: 1; 

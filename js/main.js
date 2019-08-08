@@ -193,7 +193,7 @@ const spanCounter = document.getElementById('count');
                     elemParent.classList.add('none');
                 }
             }
-            // change counter meaning
-            spanCounter.innerHTML = 0;
+            // call counter and show result of counting
+            counterItem();
         }
     });

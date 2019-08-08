@@ -94,7 +94,7 @@ const spanCounter = document.getElementById('count');
         console.log(arr); 
 
         // call counter and show result of counting
-        counterItem(); 
+        counterItem(0); 
     });
 //___Finish_______________delite elements__________
 

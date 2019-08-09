@@ -57,6 +57,9 @@ h1 {
     transition: all 0.2s ease-out;
     z-index: 1;
 }
+.spin:hover {
+    cursor: pointer;
+}
 .fa-times:hover {
     color: #af3539;
 }
@@ -84,8 +87,8 @@ h1 {
 }
 .check:hover {
     opacity: 1;
-    color: #70b92723;
-    border-color: #70b92723;
+    color: #70b9278a;
+    border-color: #70b927a4;
 }
 .new:hover .spin {
     opacity: 1; 

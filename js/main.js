@@ -1,13 +1,45 @@
-//.content - потому что всё содержимое шаблона завёрнуто в невидимый `document-fragment`
-let template = document.querySelector('#template').content; 
-let li = template.querySelector('.tameplate');
-let ul = document.querySelector('.unordered-list');
-let arr = [];
-let counterMean = arr.length; //counter in footer-bar
-//add counter in footer-bar
-const spanCounter = document.getElementById('count');
+//add and show array in localStorage
+Storage.prototype.setObj = function(key, obj) {
+    return this.setItem(key, JSON.stringify(obj))
+}
+Storage.prototype.getObj = function(key) {
+    return JSON.parse(this.getItem(key))
+}
 
-    
+
+    //.content - потому что всё содержимое шаблона завёрнуто в невидимый `document-fragment`
+    let template = document.querySelector('#template').content; 
+    let li = template.querySelector('.tameplate');
+    let ul = document.querySelector('.unordered-list');
+    let arr = localStorage.getObj('arr') || [];
+    let counterMean = arr.length; //counter in footer-bar
+    //add counter in footer-bar
+    const spanCounter = document.getElementById('count');
+    console.log(arr);
+
+
+//Create previous session
+    const previousSession = () => {
+        for (i = 0; i < arr.length; i++) {
+            let oldLi = li.cloneNode(true);
+            ul.appendChild(oldLi);
+            oldLi.setAttribute('data-id', arr[i].id);
+            let textP = oldLi.querySelector('.input-p');
+            textP.innerHTML = arr[i].mean;
+            let check = oldLi.querySelector('.check');
+            if (arr[i].check) {
+                check.classList.add('visible');
+                textP.classList.add('line-through');
+            }
+            // appear footer-bar
+            const footerBar = document.getElementById('fBar');
+            footerBar.style.visibility = "visible";
+        }
+    };
+    previousSession();
+//Finish ____previous session____________________________________________
+
+
 //Function counter "items left"__________________________________________
     const counterItem = () => {
         const allElements = ul.querySelectorAll('.check');
@@ -32,7 +64,7 @@ const spanCounter = document.getElementById('count');
             if (text === '') {
                 return;
             }
-            const newObject = {id:+ new Date(), mean:text};
+            const newObject = {id:+ new Date(), mean:text, check:false};
             document.getElementById('input').value = '';
 
            
@@ -44,6 +76,9 @@ const spanCounter = document.getElementById('count');
 
             // console.log for array
             arr.push(newObject);
+
+            // change and show array from localStorage 
+            localStorage.setObj('arr', arr);
             console.log(arr);
 
             
@@ -82,10 +117,13 @@ const spanCounter = document.getElementById('count');
         deliteObjectInArrayForId(attrMean);
 
 
-
         // remove parent and show array
         iParent.remove(); 
-        console.log(arr); 
+
+        // change and show array from localStorage 
+        localStorage.setObj('arr', arr);
+        console.log(arr);
+
 
         // call counter and show result of counting
         counterItem(); 
@@ -124,6 +162,7 @@ const spanCounter = document.getElementById('count');
     const clickOnCheck = () => {
         const target = event.target;
         const parentTargetLi = target.closest('.new');
+        const meanDataIdInLi = Number(parentTargetLi.getAttribute('data-id'));
         const pText = parentTargetLi.querySelector(`.input-p`);
         // textContent help to get text from paragraph
         let itemMeanNow = Number(document.getElementById('count').textContent); 
@@ -137,6 +176,18 @@ const spanCounter = document.getElementById('count');
                 pText.classList.add("line-through");
                 //Changer "item left" ;
                 spanCounter.innerHTML = itemMeanNow -1;
+                
+                //chage meaning in arrey after check
+                for (let i = 0; i < arr.length; i++) {
+                    if (arr[i].id === meanDataIdInLi) {
+                        arr[i].check = true;
+                    }
+                }
+                // console.log(arr);
+                localStorage.setObj('arr', arr);
+                const arrInLocalStorage = localStorage.getObj('arr');
+                console.log(arrInLocalStorage);
+
 
             } else if (state) {
                 
@@ -144,6 +195,17 @@ const spanCounter = document.getElementById('count');
                 pText.classList.remove("line-through");
                 //Changer "item left" 
                 spanCounter.innerHTML = itemMeanNow +1;
+
+                //chage meaning in arrey after check
+                for (let i = 0; i < arr.length; i++) {
+                    if (arr[i].id === meanDataIdInLi) {
+                        arr[i].check = false;
+                    }
+                }
+                // console.log(arr);
+                localStorage.setObj('arr', arr);
+                const arrInLocalStorage = localStorage.getObj('arr');
+                console.log(arrInLocalStorage);
             }
         }
     };
@@ -197,3 +259,7 @@ const spanCounter = document.getElementById('count');
             counterItem();
         }
     });
+
+
+    
+    
